@@ -1,0 +1,17 @@
+$shadow-gray: rgb(90, 90, 90);
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.app {
+	height: 100vh;
+	width: 100vw;
+	font-family: Consolas, monaco, monospace;
+	>.content {
+		display: flex;
+		justify-content: center;
+		
+	}
+}
