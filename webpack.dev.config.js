@@ -5,6 +5,7 @@ module.exports = {
     entry: './src/index.jsx',
     output: {
         path: path.resolve(__dirname, 'public'),
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -51,5 +52,6 @@ module.exports = {
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './public',
+        historyApiFallback: true,
     },
 };
