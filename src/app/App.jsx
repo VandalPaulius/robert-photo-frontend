@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
+import { Gallery, About, Contact } from './views';
 
 class App extends React.Component {
     constructor(props) {
