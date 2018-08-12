@@ -1,89 +1,84 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Route, Link } from 'react-router-dom';
+import { withRouter } from 'react-router'
 import styles from './styles.scss';
 
-class Menu extends React.Component {
-    constructor(props) {
-        super(props);
+function Menu (props) {
+    const close = () => props.toggleOpen(false);
 
-        this.state = {
-            open: false,
-        };
-        this.actions = this.initActions();
-    }
-
-    initActions() {
-        return {
-            toggleOpen: open => this.setState({ open }),
-        };
-    }
-
-    renderHeader() {
-        return (
-            <div className={`${styles.header} ${this.state.open ? styles.neighbourOpen : ''}`}>
-                <div className={styles.websiteName}>
-                    {this.props.websiteName}
-                </div>
-                <div className={styles.openCloseIconContainer}>
-                    <div className={styles.icon}>
-                        {this.state.open ? 'Close' : 'Open'}
-                    </div>
-                </div>
-            </div>
-        );
-    }
-
-    renderMenuList() {
-        return (
-            <div className={`${styles.menuList} ${this.state.open ? styles.open : ''}`}>
-                <div>
-                    <Link to="/">
-                        <div className={styles.item}>Gallery</div>
-                    </Link>
-                </div>
-                <div>
-                    <Link to="/about">
-                        <div className={styles.item}>About</div>
-                    </Link>
-                </div>
-                <div>
-                    <Link to="/contact">
-                        <div className={styles.item}>Contact</div>
-                    </Link>
-                </div>
-            </div>
-        );
-    }
-
-    render() {
-        return (
-            <div
-                className={styles.menu}
-                role="button"
-                tabIndex="0"
-                onClick={() => {
-                    if (this.state.open) {
-                        this.actions.toggleOpen(false)
-                    } else {
-                        this.actions.toggleOpen(true);
+    return (
+        <div
+            className={`${styles.menu} ${props.open ? styles.open : ''}`}
+            onMouseLeave={props.onMouseLeave}
+        >
+            <div>
+                <Link
+                    to="/" 
+                    tabIndex="0"
+                    role="button"
+                    onClick={close}
+                    className={
+                        `${
+                            styles.item
+                        } ${
+                            props.location.pathname === '/' ? styles.active : ''
+                        }`
                     }
-                }}
-                onBlur={() => this.actions.toggleOpen(false)}
-            >
-                {this.renderHeader()}
-                {this.renderMenuList()}
+                >
+                    Gallery
+                </Link>
             </div>
-        );
-    }
+            <div>
+                <Link
+                    to="/about"
+                    tabIndex="0"
+                    role="button"
+                    onClick={close}
+                    className={
+                        `${
+                            styles.item
+                        } ${
+                            props.location.pathname === '/about' ? styles.active : ''
+                        }`
+                    }
+                >
+                    About
+                </Link>
+            </div>
+            <div>
+                <Link
+                    to="/contact"
+                    tabIndex="0"
+                    role="button"
+                    onClick={close}
+                    className={
+                        `${
+                            styles.item
+                        } ${
+                            props.location.pathname === '/contact' ? styles.active : ''
+                        }`
+                    }
+                >
+                    Contact
+                </Link>
+            </div>
+        </div>
+    );
 }
 
 Menu.propTypes = {
-    websiteName: PropTypes.string,
+    open: PropTypes.bool,
+    toggleOpen: PropTypes.func.isRequired,
+    location: PropTypes.shape({
+        pathname: PropTypes.string,
+    }).isRequired,
+    onMouseLeave: PropTypes.func
 };
 
 Menu.defaultProps = {
-    websiteName: '',
+    open: false,
+    onMouseLeave: () => {},
 };
 
-export default Menu;
+export default withRouter(Menu);

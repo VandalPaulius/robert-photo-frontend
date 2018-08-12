@@ -1,0 +1,41 @@
+.header {
+    cursor: pointer;
+    background: #252525;
+    display: flex;
+    position: relative;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    border-bottom: solid 1px;
+    border-bottom-color: rgba(194, 194, 194, 0);
+    transition: border-bottom-color 0.5s;
+
+    &.neighbourOpen {
+        border-bottom-color: rgba(194, 194, 194, 1);
+        box-shadow: none;
+    }
+    
+    .websiteName {
+        margin-left: 50px;
+        color: #FFFFFF;
+        font-size: 25px;
+        padding: 15px 0;
+    }
+
+    &>.openCloseIconContainer {
+        position: absolute;
+        right: 0;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &>.icon {
+            color: #FFFFFF;
+            margin: 0 20px;
+
+            &:hover {
+                color: #000000;
+                background-color: #FFFFFF;
+            }
+        }
+    }
+}
