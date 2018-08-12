@@ -1,5 +1,15 @@
 html {
     @import './normalize.scss';
+
+    a,
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+        color: inherit; /*color of your choosing*/
+        text-decoration: none;
+        font-weight: normal;
+    }
 }
 
 .app {

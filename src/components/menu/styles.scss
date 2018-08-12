@@ -1,0 +1,66 @@
+.menu {
+    background: #252525;
+    cursor: pointer;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+
+    .header {
+        display: flex;
+        justify-content: center;
+        position: relative;
+        border-bottom: solid 1px;
+        border-bottom-color: rgba(194, 194, 194, 0);
+        transition: border-bottom-color 0.5s;
+
+        &.neighbourOpen {
+            border-bottom-color: rgba(194, 194, 194, 1);
+        }
+        
+        .websiteName {
+            color: #FFFFFF;
+            font-size: 25px;
+            padding: 15px 0;
+        }
+
+        &>.openCloseIconContainer {
+            position: absolute;
+            right: 0;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &>.icon {
+                color: #FFFFFF;
+                margin: 0 10px;
+
+                &:hover {
+                    color: #000000;
+                    background-color: #FFFFFF;
+                }
+            }
+        }
+    }
+
+    .menuList {
+        max-height: 0;
+        transition: max-height 0.5s;
+        overflow: hidden;
+
+        &.open {
+            max-height: 100vh;
+        }
+
+        .item {
+            color: #FFFFFF;
+            font-size: 18px;
+            padding: 8px 15px;
+
+            &:hover {
+                color: #000000;
+                background-color: #FFFFFF;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                z-index: 1;
+            }
+        }
+    }
+}

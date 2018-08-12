@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styles from './styles.scss';
 import { Gallery, About, Contact } from './views';
+import { Menu } from 'components';
 
 class App extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-
+            config: {
+                websiteName: 'Robert Photo',
+            },
         };
 
         this.actions = this.initActions();
@@ -24,20 +27,20 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className={styles.app}>
-                <div>
-                    Menu
+            <Router>
+                <div className={styles.app}>
+                    <div>
+                        <Menu
+                            websiteName={this.state.config.websiteName}
+                        />
+                    </div>
+                    <div>
+                        <Route exact path="/" component={Gallery} />
+                        <Route path="/about" component={About} />
+                        <Route path="/contact" component={Contact} />
+                    </div>
                 </div>
-                <div>
-                    <Router>
-                        <div>
-                            <Route exact path="/" component={Gallery} />
-                            <Route path="/about" component={About} />
-                            <Route path="/contact" component={Contact} />
-                        </div>
-                    </Router>
-                </div>
-            </div>
+            </Router>
         );
     }
 }
