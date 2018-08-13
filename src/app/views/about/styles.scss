@@ -1,26 +1,30 @@
 .about {
-    height: 100%;
-    width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
+    
+    .content {
+        max-width: 700px;
+        display: flex;
+        flex-wrap: wrap;
 
-    .imageContainer {
-
-        &>.image {
-            max-width: 100%;
+        .imageContainer {
+            &>.image {
+                width: 100%;
+                height: auto;
+            }
         }
-    }
 
-    .text {
-        color: #000000;
-        margin: 20px;
+        .text {
+            color: #000000;
+            margin: 20px;
 
-        &.heading {
-            font-size: 30px;
-            font-weight: 700;
+            &.heading {
+                font-size: 30px;
+                font-weight: 700;
 
-            &.textAfter {
-                margin-bottom: 0;
+                &.textAfter {
+                    margin-bottom: 0;
+                }
             }
         }
     }
