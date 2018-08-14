@@ -10,7 +10,7 @@ function About(props) {
                     if (data.image) {
                         return (
                             <div key={data.id} className={styles.imageContainer}>
-                                <img src={data.url} alt={data.alt} className={styles.image}/>
+                                <img src={data.url} alt={data.alt} className={styles.image} />
                             </div>
                         );
                     }

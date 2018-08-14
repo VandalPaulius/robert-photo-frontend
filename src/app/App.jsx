@@ -36,6 +36,7 @@ class App extends React.Component {
                     text: true,
                     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
                 }],
+                copyrightNote: 'Robert Arthur Photography ©',
             },
             menuOpen: false,
         };
@@ -84,6 +85,13 @@ class App extends React.Component {
                             <Route path="/contact" component={Contact} />
                         </div>
                     </div>
+                    {/* {this.state.config.copyrightNote && (
+                        <div className={styles.copyrightNote}>
+                            <div className={styles.text}>
+                                {this.state.config.copyrightNote}
+                            </div>
+                        </div>
+                    )} */}
                 </div>
             </Router>
         );

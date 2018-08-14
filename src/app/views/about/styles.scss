@@ -8,9 +8,15 @@
         flex-wrap: wrap;
 
         .imageContainer {
+            //flex-grow: 0;
+            //display: flex;
+
             &>.image {
-                width: 100%;
+                width: 99%;
                 height: auto;
+
+                max-width: 100%;
+                max-height: 100%;
             }
         }
 
