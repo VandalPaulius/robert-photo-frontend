@@ -55,12 +55,14 @@ class App extends React.Component {
         return (
             <Router>
                 <div className={styles.app}>
-                    <Header
-                        menuOpen={this.state.menuOpen}
-                        websiteName={this.state.config.websiteName}
-                        toggleMenu={this.actions.toggleMenuOpen}
-                        onMouseEnter={() => this.actions.toggleMenuOpen(true)}
-                    />
+                    <div className={styles.headerContainer}>
+                        <Header
+                            menuOpen={this.state.menuOpen}
+                            websiteName={this.state.config.websiteName}
+                            toggleMenu={this.actions.toggleMenuOpen}
+                            onMouseEnter={() => this.actions.toggleMenuOpen(true)}
+                        />
+                    </div>
                     <div className={styles.content}>
                         <div
                             className={styles.menu}
@@ -85,13 +87,13 @@ class App extends React.Component {
                             <Route path="/contact" component={Contact} />
                         </div>
                     </div>
-                    {/* {this.state.config.copyrightNote && (
+                    {this.state.config.copyrightNote && (
                         <div className={styles.copyrightNote}>
                             <div className={styles.text}>
                                 {this.state.config.copyrightNote}
                             </div>
                         </div>
-                    )} */}
+                    )}
                 </div>
             </Router>
         );
