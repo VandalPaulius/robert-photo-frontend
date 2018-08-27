@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Menu, Header } from 'components';
 import styles from './styles.scss';
@@ -37,6 +36,7 @@ class App extends React.Component {
                     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
                 }],
                 copyrightNote: 'Robert Arthur Photography ©',
+                contactCaption: 'Fancy a chat?',
             },
             menuOpen: false,
         };
@@ -84,7 +84,12 @@ class App extends React.Component {
                                     />
                                 )}
                             />
-                            <Route path="/contact" component={Contact} />
+                            <Route
+                                path="/contact"
+                                component={() => (
+                                    <Contact caption={this.state.config.contactCaption} />
+                                )}
+                            />
                         </div>
                     </div>
                     {this.state.config.copyrightNote && (
@@ -99,13 +104,5 @@ class App extends React.Component {
         );
     }
 }
-
-App.propTypes = {
-
-};
-
-App.defaultProps = {
-
-};
 
 export default App;
