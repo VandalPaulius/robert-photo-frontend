@@ -5,42 +5,56 @@
     .content {
         max-width: 700px;
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 50px;
 
         .caption {
             color: #000000;
             margin: 20px;
+            font-size: 30px;
+            font-weight: 700;
+        }
 
-            // &.heading {
-                font-size: 30px;
-                font-weight: 700;
-            // }
+        .input {
+            padding: 10px;
+            margin: 10px 20px;
+            border: solid 1px #8d8d8d;
+
+            &:hover, &:focus {
+                box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+                z-index: 1;
+                outline: none;
+            }
+        }
+
+        textarea {
+            min-height: 150px;
+        }
+
+        .buttonContainer {
+            margin: 20px 20px 0 0;
+            display: flex;
+            justify-content: flex-end;
+
+            .sendButton {
+                cursor: pointer;
+                background: #252525;
+                color: #FFFFFF;
+                font-size: 18px;
+                padding: 12px 20px;
+                display: flex;
+                justify-content: center;
+                box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+
+                &:hover {
+                    color: #000000;
+                    background-color: #FFFFFF;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+                    z-index: 1;
+                }
+            }
         }
     }
 }
-
-
-    //     .imageContainer {
-    //         &>.image {
-    //             width: 99%;
-    //             height: auto;
-
-    //             max-width: 100%;
-    //             max-height: 100%;
-    //         }
-    //     }
-
-    //     .text {
-    //         color: #000000;
-    //         margin: 20px;
-
-    //         &.heading {
-    //             font-size: 30px;
-    //             font-weight: 700;
-
-    //             &.textAfter {
-    //                 margin-bottom: 0;
-    //             }
-    //         }
-    //     }
-    // }

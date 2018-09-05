@@ -15,28 +15,35 @@ class Contact extends React.Component {
 
     initActions() {
         return {
-            setFormRef: formRef => this.setState({ formRef }),
+            setRef: (ref, name) => {
+                if (!this.state[name]) {
+                    this.setState({ [name]: ref });
+                }
+            },
+            sendMessage: () => {
+
+            }
         };
     }
 
-    renderFakeReCaptcha({ onSolved }) {
-        return (
-            <div
-                style={{
-                    background: '#c4c4c4',
-                    minWidth: '200px',
-                    minHeight: '50px',
-                }}
-            >
-                <button
-                    type="button"
-                    onClick={() => setTimeout(() => onSolved(), 50)}
-                >
-                    Solve
-                </button>
-            </div>
-        );
-    }
+    // renderFakeReCaptcha({ onSolved }) {
+    //     return (
+    //         <div
+    //             style={{
+    //                 background: '#c4c4c4',
+    //                 minWidth: '200px',
+    //                 minHeight: '50px',
+    //             }}
+    //         >
+    //             <button
+    //                 type="button"
+    //                 onClick={() => setTimeout(() => onSolved(), 50)}
+    //             >
+    //                 Solve
+    //             </button>
+    //         </div>
+    //     );
+    // }
 
     render() {
         return (
@@ -47,7 +54,28 @@ class Contact extends React.Component {
                             {this.props.caption}
                         </div>
                     )}
-                    <input ref={this.actions.setFormRef} />
+                    <input
+                        className={styles.input}
+                        placeholder="Email"
+                        ref={ref => this.actions.setRef(ref, 'emailInputRef')}
+                        type="email"
+                    />
+                    <textarea
+                        className={styles.input}
+                        ref={ref => this.actions.setRef(ref, 'messageInputRef')}
+                        placeholder={this.props.placeholder}
+                    />
+                    {/* {this.renderFakeReCaptcha()} */}
+                    <div className={styles.buttonContainer}>
+                        <div
+                            className={styles.sendButton}
+                            onClick={this.actions.sendMessage}
+                            role="button"
+                            tabIndex={0}
+                        >
+                            Send
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -56,10 +84,12 @@ class Contact extends React.Component {
 
 Contact.propTypes = {
     caption: PropTypes.string,
+    placeholder: PropTypes.string,
 };
 
 Contact.defaultProps = {
     caption: '',
+    placeholder: '',
 };
 
 export default Contact;

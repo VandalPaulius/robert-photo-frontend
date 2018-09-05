@@ -37,6 +37,7 @@ class App extends React.Component {
                 }],
                 copyrightNote: 'Robert Arthur Photography ©',
                 contactCaption: 'Fancy a chat?',
+                contactPlaceholder: 'Hi, ...',
             },
             menuOpen: false,
         };
@@ -87,7 +88,10 @@ class App extends React.Component {
                             <Route
                                 path="/contact"
                                 component={() => (
-                                    <Contact caption={this.state.config.contactCaption} />
+                                    <Contact
+                                        caption={this.state.config.contactCaption}
+                                        placeholder={this.state.config.contactPlaceholder}
+                                    />
                                 )}
                             />
                         </div>
