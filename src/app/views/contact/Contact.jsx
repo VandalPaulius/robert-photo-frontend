@@ -7,7 +7,9 @@ class Contact extends React.Component {
         super(props);
 
         this.state = {
-            formRef: null,
+            emailInputRef: null,
+            messageInputRef: null,
+            errors: {},
         };
 
         this.actions = this.initActions();
@@ -21,8 +23,31 @@ class Contact extends React.Component {
                 }
             },
             sendMessage: () => {
+                const isValid = (message) => {
+                    const errors = {
+                        email: '',
+                        message: '',
+                    };
 
-            }
+                    if (!/[^\s@]+@[^\s@]+\.[^\s@]+/.test(message.email.toLowerCase())) {
+                        errors.email = 'Email is not valid';
+                    }
+
+                    if (!message.message) {
+                        errors.message = 'Message is empty';
+                    }
+
+                    this.setState({ errors });
+                };
+
+                if (isValid({
+                    email: this.state.emailInputRef.value,
+                    message: this.state.messageInputRef.value,
+                })) {
+                    // fetch
+                }
+            },
+            
         };
     }
 
@@ -60,11 +85,17 @@ class Contact extends React.Component {
                         ref={ref => this.actions.setRef(ref, 'emailInputRef')}
                         type="email"
                     />
+                    <div className={styles.error}>
+                        {this.state.errors.email}
+                    </div>
                     <textarea
                         className={styles.input}
                         ref={ref => this.actions.setRef(ref, 'messageInputRef')}
                         placeholder={this.props.placeholder}
                     />
+                    <div className={styles.error}>
+                        {this.state.errors.message}
+                    </div>
                     {/* {this.renderFakeReCaptcha()} */}
                     <div className={styles.buttonContainer}>
                         <div
@@ -75,6 +106,9 @@ class Contact extends React.Component {
                         >
                             Send
                         </div>
+                    </div>
+                    <div className={styles.error}>
+                        {this.state.errors.send}
                     </div>
                 </div>
             </div>
