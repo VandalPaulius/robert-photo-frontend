@@ -1,0 +1,77 @@
+.captcha {
+    background: #c4c4c4;
+    padding: 20px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.356);
+    border: solid 1px #8d8d8d;
+
+    .question {
+        margin-bottom: 10px;
+    }
+
+    .buttonContainer {
+        display: flex;
+
+        .button {
+            cursor: pointer;
+            background: #252525;
+            color: #FFFFFF;
+            font-size: 14px;
+            padding: 10px 18px;
+            display: flex;
+            justify-content: center;
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.356);
+
+            &:hover {
+                color: #000000;
+                background-color: #FFFFFF;
+                box-shadow: 0 0 6px rgba(0, 0, 0, 0.356);
+                z-index: 1;
+
+                .content {
+                    &> .iconContainer {
+                        >.checkMarkIcon {
+                            fill: #000000;
+                        }
+                    }
+                }
+            }
+
+            .content {
+                position: relative;
+
+                &> .textContent {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                }
+
+                &> .iconContainer {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    &>.checkMarkIcon {
+                        height: 15px;
+                        width: 15px;
+                        fill: #FFFFFF;
+                    }                    
+                }
+            }            
+        }
+
+        .separator {
+            margin-left: 10px;
+        }
+    }
+
+    .hide {
+        visibility: hidden;
+    }
+}

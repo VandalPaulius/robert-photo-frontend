@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
+import { Captcha } from './components';
 
 class Contact extends React.Component {
     constructor(props) {
@@ -10,6 +11,8 @@ class Contact extends React.Component {
             emailInputRef: null,
             messageInputRef: null,
             errors: {},
+            sendStatus: 'idle',
+            captchaSolved: false,
         };
 
         this.actions = this.initActions();
@@ -22,8 +25,12 @@ class Contact extends React.Component {
                     this.setState({ [name]: ref });
                 }
             },
+            updateSendStatus: (sendStatus) => {
+                this.setState({ sendStatus });
+            },
             sendMessage: () => {
                 const isValid = (message) => {
+                    let valid = true;
                     const errors = {
                         email: '',
                         message: '',
@@ -31,13 +38,21 @@ class Contact extends React.Component {
 
                     if (!/[^\s@]+@[^\s@]+\.[^\s@]+/.test(message.email.toLowerCase())) {
                         errors.email = 'Email is not valid';
+                        valid = false;
                     }
 
                     if (!message.message) {
                         errors.message = 'Message is empty';
+                        valid = false;
+                    }
+
+                    if (!this.state.captchaSolved) {
+                        errors.captcha = 'Are you a human?';
+                        valid = false;
                     }
 
                     this.setState({ errors });
+                    return valid;
                 };
 
                 if (isValid({
@@ -45,30 +60,25 @@ class Contact extends React.Component {
                     message: this.state.messageInputRef.value,
                 })) {
                     // fetch
+
+                    this.actions.updateSendStatus('sending');
+                    setTimeout(() => { // dev
+                        this.actions.updateSendStatus('idle');
+
+                        this.setState(prevState => ({
+                            errors: {
+                                ...prevState.errors,
+                                send: 'Failed to send message',
+                            },
+                        }));
+                    }, 500);
                 }
             },
-            
+            updateCaptchaStatus: (captchaSolved) => {
+                this.setState({ captchaSolved });
+            },
         };
     }
-
-    // renderFakeReCaptcha({ onSolved }) {
-    //     return (
-    //         <div
-    //             style={{
-    //                 background: '#c4c4c4',
-    //                 minWidth: '200px',
-    //                 minHeight: '50px',
-    //             }}
-    //         >
-    //             <button
-    //                 type="button"
-    //                 onClick={() => setTimeout(() => onSolved(), 50)}
-    //             >
-    //                 Solve
-    //             </button>
-    //         </div>
-    //     );
-    // }
 
     render() {
         return (
@@ -84,6 +94,7 @@ class Contact extends React.Component {
                         placeholder="Email"
                         ref={ref => this.actions.setRef(ref, 'emailInputRef')}
                         type="email"
+                        defaultValue="asdasf@dsfsdf.lrfdg" // dev
                     />
                     <div className={styles.error}>
                         {this.state.errors.email}
@@ -92,11 +103,21 @@ class Contact extends React.Component {
                         className={styles.input}
                         ref={ref => this.actions.setRef(ref, 'messageInputRef')}
                         placeholder={this.props.placeholder}
+                        defaultValue="asdasf@dsfsdf.lrfdg" // dev
                     />
                     <div className={styles.error}>
                         {this.state.errors.message}
                     </div>
-                    {/* {this.renderFakeReCaptcha()} */}
+                    <div className={styles.captchaContainer}>
+                        <Captcha
+                            className={styles.captcha}
+                            onSolved={() => this.actions.updateCaptchaStatus(true)}
+                            solved={this.state.captchaSolved}
+                        />
+                    </div>
+                    <div className={styles.error}>
+                        {this.state.errors.captcha}
+                    </div>
                     <div className={styles.buttonContainer}>
                         <div
                             className={styles.sendButton}
