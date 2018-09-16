@@ -109,27 +109,11 @@ class SendButton extends React.Component {
                         {this.props.children}
                     </div>
     
-                    {/* <div className={`${styles.iconContainer} ${props.status === 'loading' ? '' : styles.hide}`}>
+                    <div className={`${styles.iconContainer} ${this.props.status === 'loading' ? '' : styles.hide}`}>
                         <LoadingIcon className={styles.loadingIcon} color="#FFFFFF" />
-                    </div> */}
-    
-                    {/* <div className={`${styles.iconContainer} ${props.status === 'success' ? '' : styles.hide}`}>
-                        <svg
-                            className={styles.checkMarkIcon}
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                        >
-                            <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z" />
-                        </svg>
-                    </div> */}
-    
-                    <div
-                        className={`${
-                            styles.iconContainer
-                        } ${
-                            this.props.status === 'success' ? '' : ''
-                        }`}
-                    >
+                    </div>
+
+                    <div className={`${styles.iconContainer} ${this.props.status === 'success' ? '' : ''}`}>
                         <CheckIcon
                             className={styles.checkMarkIcon}
                             style={{ color: this.state.isHovered ? '#000000' : '#FFFFFF' }}

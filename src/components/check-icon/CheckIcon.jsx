@@ -30,8 +30,7 @@ CheckIcon.propTypes = {
 CheckIcon.defaultProps = {
     className: '',
     style: {
-        // color: '#000000',
-        color: '#4286f4'
+        color: '#000000',
     },
 };
 
