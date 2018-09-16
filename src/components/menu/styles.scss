@@ -1,7 +1,7 @@
 .menu {
     background: #252525;
     cursor: pointer;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.356);
     max-height: 0;
     transition: max-height 0.5s;
     overflow: hidden;
@@ -13,21 +13,21 @@
     .item {
         color: #FFFFFF;
         font-size: 18px;
-        padding: 8px 15px;
+        padding: 12px 20px;
         display: flex;
         justify-content: center;
 
         &:hover {
             color: #000000;
             background-color: #FFFFFF;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.356);
             z-index: 1;
         }
 
         &.active {
             color: #000000;
             background-color: #FFFFFF;
-            box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 6px rgba(0, 0, 0, 0.356);
             z-index: 1;
         }
     }

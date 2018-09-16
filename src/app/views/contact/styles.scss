@@ -1,0 +1,73 @@
+.contact {
+    display: flex;
+    justify-content: center;
+
+    .content {
+        max-width: 700px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 20px;
+
+        .caption {
+            color: #000000;
+            margin: 20px;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .input {
+            padding: 10px;
+            margin: 8px 20px;
+            border: solid 1px #8d8d8d;
+
+            &:hover, &:focus {
+                box-shadow: 0 0 6px rgba(0, 0, 0, 0.356);
+                z-index: 1;
+                outline: none;
+            }
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .buttonContainer {
+            margin: 5px 20px 8px 20px;
+            display: flex;
+            justify-content: flex-end;
+
+            .sendButton {
+                cursor: pointer;
+                background: #252525;
+                color: #FFFFFF;
+                font-size: 18px;
+                padding: 12px 20px;
+                display: flex;
+                justify-content: center;
+                box-shadow: 0 0 6px rgba(0, 0, 0, 0.356);
+
+                &:hover {
+                    color: #000000;
+                    background-color: #FFFFFF;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.356);
+                    z-index: 1;
+                }
+            }
+        }
+
+        .captchaContainer {
+            display: flex;
+            flex-wrap: nowrap;
+            margin: 8px 20px 8px 20px;
+        }
+
+        .error {
+            color: rgb(255, 0, 0);
+            height: 15px;
+            margin: 0 20px 10px 20px;
+            font-size: 14px;
+        }
+    }
+}
