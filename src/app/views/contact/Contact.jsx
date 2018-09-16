@@ -131,20 +131,9 @@ class Contact extends React.Component {
                         {this.state.errors.captcha}
                     </div>
                     <div className={styles.buttonContainer}>
-                        {/* <div
-                            className={styles.sendButton}
-                            onClick={this.actions.sendMessage}
-                            role="button"
-                            tabIndex={0}
-                        >
-                            Send
-                        </div> */}
                         <SendButton
                             onClick={this.actions.sendMessage}
-                            // status={this.getSendButtonStatus()}
-
-                            status="loading"
-                            // status="success"
+                            status={this.getSendButtonStatus()}
                         >
                             Send
                         </SendButton>
