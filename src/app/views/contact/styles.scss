@@ -8,7 +8,6 @@
         flex-direction: column;
         width: 100%;
         margin-top: 20px;
-        margin-bottom: 50px;
 
         .caption {
             color: #000000;
@@ -35,6 +34,7 @@
         }
 
         .buttonContainer {
+            background: red;
             margin: 5px 20px 8px 20px;
             display: flex;
             justify-content: flex-end;

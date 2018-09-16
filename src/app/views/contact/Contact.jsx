@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
-import { Captcha } from './components';
+import { Captcha, SendButton } from './components';
 
 class Contact extends React.Component {
     constructor(props) {
@@ -18,6 +18,7 @@ class Contact extends React.Component {
         this.actions = this.initActions();
     }
 
+    // eslint-disable-next-line react/sort-comp
     initActions() {
         return {
             setRef: (ref, name) => {
@@ -80,6 +81,17 @@ class Contact extends React.Component {
         };
     }
 
+    getSendButtonStatus() {
+        if (this.state.sendStatus === 'sending') {
+            return 'loading';
+        }
+        if (this.state.sendStatus === 'sent') {
+            return 'succes';
+        }
+
+        return '';
+    }
+
     render() {
         return (
             <div className={styles.contact}>
@@ -119,14 +131,23 @@ class Contact extends React.Component {
                         {this.state.errors.captcha}
                     </div>
                     <div className={styles.buttonContainer}>
-                        <div
+                        {/* <div
                             className={styles.sendButton}
                             onClick={this.actions.sendMessage}
                             role="button"
                             tabIndex={0}
                         >
                             Send
-                        </div>
+                        </div> */}
+                        <SendButton
+                            onClick={this.actions.sendMessage}
+                            // status={this.getSendButtonStatus()}
+
+                            status="loading"
+                            // status="success"
+                        >
+                            Send
+                        </SendButton>
                     </div>
                     <div className={styles.error}>
                         {this.state.errors.send}
