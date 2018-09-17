@@ -31,11 +31,12 @@
         &>.icon {
             color: #FFFFFF;
             margin: 0 20px;
-
-            &:hover {
-                color: #000000;
-                background-color: #FFFFFF;
-            }
+            
+            fill: #FFFFFF;
+            stroke: #FFFFFF;
+            stroke-width: 0px;
+            height: 20px;
+            width: 20px;
         }
     }
 }

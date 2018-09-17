@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { CloseIcon } from 'components';
 import styles from './styles.scss';
 
 function Header(props) {
@@ -22,7 +23,10 @@ function Header(props) {
             </div>
             <div className={styles.openCloseIconContainer}>
                 <div className={styles.icon}>
-                    {props.menuOpen ? 'Close' : 'Open'}
+                    {/* {props.menuOpen ? 'Close' : 'Open'} */}
+                    {props.menuOpen ? (
+                        <CloseIcon />
+                    ) : 'Open'}
                 </div>
             </div>
         </div>
