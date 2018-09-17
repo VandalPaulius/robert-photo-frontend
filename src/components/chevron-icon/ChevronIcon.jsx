@@ -2,35 +2,44 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
-function CloseIcon(props) {
+function ChevronIcon(props) {
     return (
         <svg
-            className={`${styles.closeIcon} ${props.className}`}
+            className={`${styles.chevronIcon} ${props.className}`}
             style={{
                 fill: props.style.color,
                 stroke: props.style.color,
                 enableBackground: 'new 0 0 50 50',
+                transform: `rotate(${props.rotateBy}deg)`,
                 ...props.style,
             }}
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 32 32"
         >
-            <path d="M4 8 L8 4 L16 12 L24 4 L28 8 L20 16 L28 24 L24 28 L16 20 L8 28 L4 24 L12 16 z" />
+            <svg
+                id="chevron-right"
+                viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path d="M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z" />
+            </svg>
         </svg>
     );
 }
 
-CloseIcon.propTypes = {
+ChevronIcon.propTypes = {
     className: PropTypes.string,
     style: PropTypes.shape({
         color: PropTypes.string,
     }),
+    rotateBy: PropTypes.number,
 };
 
-CloseIcon.defaultProps = {
+ChevronIcon.defaultProps = {
     className: '',
     style: {},
+    rotateBy: 0,
 };
 
-export default CloseIcon;
+export default ChevronIcon;

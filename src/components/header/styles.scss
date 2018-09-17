@@ -29,14 +29,20 @@
         align-items: center;
 
         &>.icon {
-            color: #FFFFFF;
             margin: 0 20px;
-            
             fill: #FFFFFF;
             stroke: #FFFFFF;
-            stroke-width: 0px;
-            height: 20px;
-            width: 20px;
+            color: white;
+
+            &>.close {
+                height: 20px;
+                width: 20px;
+            }
+
+            &>.chevron {
+                height: 18px;
+                width: 18px;
+            }
         }
     }
 }

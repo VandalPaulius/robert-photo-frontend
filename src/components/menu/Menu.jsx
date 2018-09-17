@@ -14,7 +14,7 @@ function Menu(props) {
         >
             <div>
                 <Link
-                    to="/" 
+                    to="/"
                     tabIndex={0}
                     role="button"
                     onClick={close}

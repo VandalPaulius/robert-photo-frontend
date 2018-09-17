@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CloseIcon } from 'components';
+import { CloseIcon, ChevronIcon } from 'components';
 import styles from './styles.scss';
 
 function Header(props) {
     return (
         <div
             className={`${styles.header} ${props.menuOpen ? styles.neighbourOpen : ''}`}
-            tabIndex="0"
+            tabIndex={0}
             role="button"
             onClick={() => {
                 if (props.menuOpen) {
@@ -23,10 +23,17 @@ function Header(props) {
             </div>
             <div className={styles.openCloseIconContainer}>
                 <div className={styles.icon}>
-                    {/* {props.menuOpen ? 'Close' : 'Open'} */}
                     {props.menuOpen ? (
-                        <CloseIcon />
-                    ) : 'Open'}
+                        <ChevronIcon
+                            className={styles.chevron}
+                            rotateBy={-90}
+                        />
+                    ) : (
+                        <ChevronIcon
+                            className={styles.chevron}
+                            rotateBy={90}
+                        />
+                    )}
                 </div>
             </div>
         </div>
