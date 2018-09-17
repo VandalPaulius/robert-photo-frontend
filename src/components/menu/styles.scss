@@ -16,12 +16,18 @@
         padding: 12px 20px;
         display: flex;
         justify-content: center;
+        align-items: center;
 
         &:hover {
             color: #000000;
             background-color: #FFFFFF;
             box-shadow: 0 0 6px rgba(0, 0, 0, 0.356);
             z-index: 1;
+
+            .instagramIcon {
+                fill: #000000;
+                stroke: #000000;
+            }
         }
 
         &.active {
@@ -30,5 +36,17 @@
             box-shadow: 0 0 6px rgba(0, 0, 0, 0.356);
             z-index: 1;
         }
-    }
+
+        a {
+            text-decoration: inherit;
+            color: inherit;
+        }
+
+        .instagramIcon {
+            margin-left: 6px;
+            height: 20px;
+            width: 20px;
+            fill: #FFFFFF;
+        }
+    }    
 }

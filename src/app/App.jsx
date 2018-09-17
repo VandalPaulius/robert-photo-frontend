@@ -38,6 +38,7 @@ class App extends React.Component {
                 copyrightNote: 'Robert Arthur Photography ©',
                 contactCaption: 'Fancy a chat?',
                 contactPlaceholder: 'Hi, ...',
+                instagramUrl: 'https://www.instagram.com/ridebmx/?hl=en',
             },
             menuOpen: false,
         };
@@ -73,6 +74,7 @@ class App extends React.Component {
                                 open={this.state.menuOpen}
                                 toggleOpen={this.actions.toggleMenuOpen}
                                 onMouseLeave={() => this.actions.toggleMenuOpen(false)}
+                                instagramUrl={this.state.config.instagramUrl}
                             />
                         </div>
                         <div className={styles.routes}>
