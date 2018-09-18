@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Route, Link } from 'react-router-dom';
-import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import styles from './styles.scss';
 
 function Menu(props) {
