@@ -194,7 +194,7 @@ class App extends React.Component {
                     path="/contact"
                     component={() => (
                         <Contact
-                            caption={this.state.config.contactCaption}
+                            caption={this.state.config.contact.contactCaption}
                             emailPlaceholder={this.state.config.contact.emailPlaceholder}
                             messagePlaceholder={this.state.config.contact.messagePlaceholder}
                         />
