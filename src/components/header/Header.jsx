@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CloseIcon, ChevronIcon } from 'components';
+import { ChevronIcon } from 'components';
 import styles from './styles.scss';
 
 function Header(props) {
@@ -22,19 +22,13 @@ function Header(props) {
                 {props.websiteName}
             </div>
             <div className={styles.openCloseIconContainer}>
-                <div className={styles.icon}>
-                    {props.menuOpen ? (
-                        <ChevronIcon
-                            className={styles.chevron}
-                            rotateBy={-90}
-                        />
-                    ) : (
-                        <ChevronIcon
-                            className={styles.chevron}
-                            rotateBy={90}
-                        />
-                    )}
-                </div>
+                <ChevronIcon
+                    className={`${
+                        styles.chevronIcon
+                    } ${
+                        props.menuOpen ? styles.rotated : ''
+                    }`}
+                />
             </div>
         </div>
     );

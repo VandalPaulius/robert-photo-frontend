@@ -4,3 +4,4 @@ export { LoadingIcon } from './loading-icon';
 export { CheckIcon } from './check-icon';
 export { CloseIcon } from './close-icon';
 export { ChevronIcon } from './chevron-icon';
+export { ContactForm } from './contact-form';

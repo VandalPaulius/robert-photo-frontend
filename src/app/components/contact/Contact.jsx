@@ -106,7 +106,6 @@ class Contact extends React.Component {
                         placeholder="Email"
                         ref={ref => this.actions.setRef(ref, 'emailInputRef')}
                         type="email"
-                        defaultValue="asdasf@dsfsdf.lrfdg" // dev
                     />
                     <div className={styles.error}>
                         {this.state.errors.email}
@@ -115,7 +114,6 @@ class Contact extends React.Component {
                         className={styles.input}
                         ref={ref => this.actions.setRef(ref, 'messageInputRef')}
                         placeholder={this.props.placeholder}
-                        defaultValue="asdasf@dsfsdf.lrfdg" // dev
                     />
                     <div className={styles.error}>
                         {this.state.errors.message}

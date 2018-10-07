@@ -3,16 +3,21 @@ import PropTypes from 'prop-types';
 import styles from './styles.scss';
 
 function ChevronIcon(props) {
+    const iconStyles = {
+        fill: props.style.color,
+        stroke: props.style.color,
+        enableBackground: 'new 0 0 50 50',
+        ...props.style,
+    };
+    if (props.rotateBy) {
+        iconStyles.transform = `rotate(${props.rotateBy}deg)`;
+    }
+
+
     return (
         <svg
             className={`${styles.chevronIcon} ${props.className}`}
-            style={{
-                fill: props.style.color,
-                stroke: props.style.color,
-                enableBackground: 'new 0 0 50 50',
-                transform: `rotate(${props.rotateBy}deg)`,
-                ...props.style,
-            }}
+            style={iconStyles}
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 32 32"
