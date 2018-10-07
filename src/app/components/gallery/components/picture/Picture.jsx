@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ChevronIcon } from 'components';
+import { ChevronIcon, Expandable } from 'components';
 import styles from './styles.scss';
-import { Expandable, OrderForm } from './components';
+import { OrderForm } from './components';
 
 class Picture extends React.Component {
     constructor(props) {

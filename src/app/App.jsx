@@ -1,6 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Menu, Header, LoadingIcon } from 'components';
+import {
+    Menu,
+    Header,
+    LoadingIcon,
+    Expandable,
+} from 'components';
 import styles from './styles.scss';
 import { Gallery, About, Contact } from './components';
 
@@ -223,12 +228,15 @@ class App extends React.Component {
                                     className={styles.menu}
                                     onBlur={() => this.actions.toggleMenuOpen(false)}
                                 >
-                                    <Menu
-                                        open={this.state.menuOpen}
-                                        toggleOpen={this.actions.toggleMenuOpen}
-                                        onMouseLeave={() => this.actions.toggleMenuOpen(false)}
-                                        instagramUrl={this.state.config.instagramUrl}
-                                    />
+                                    <Expandable expanded={this.state.menuOpen}>
+                                        <Menu
+                                            // open={this.state.menuOpen}
+                                            open
+                                            toggleOpen={this.actions.toggleMenuOpen}
+                                            onMouseLeave={() => this.actions.toggleMenuOpen(false)}
+                                            instagramUrl={this.state.config.instagramUrl}
+                                        />
+                                    </Expandable>
                                 </div>
                                 {this.renderRoutes()}
                             </div>

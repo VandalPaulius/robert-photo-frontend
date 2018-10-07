@@ -17,6 +17,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: background 0.1s ease-out;
 
         &:hover {
             color: #000000;
