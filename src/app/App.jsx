@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Menu, Header } from 'components';
+import { Menu, Header, LoadingIcon } from 'components';
 import styles from './styles.scss';
 import { Gallery, About, Contact } from './components';
 
@@ -36,9 +36,12 @@ class App extends React.Component {
                     content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
                 }],
                 copyrightNote: 'Robert Arthur Photography ©',
-                contactCaption: 'Fancy a chat?',
-                contactPlaceholder: 'Hi, ...',
                 instagramUrl: 'https://www.instagram.com/ridebmx/?hl=en',
+                contact: {
+                    contactCaption: 'Fancy a chat?',
+                    messagePlaceholder: 'Hi, ...',
+                    emailPlaceholder: 'Email',
+                },
                 gallery: {
                     pictures: [{
                         id: 'dsfdsfdhfghfgjhfghfgh',
@@ -137,6 +140,7 @@ class App extends React.Component {
                     orderEmailPlaceholder: 'Email',
                 },
             },
+            loaded: false, // dev
             menuOpen: false,
         };
 
@@ -150,68 +154,85 @@ class App extends React.Component {
         };
     }
 
+    renderRoutes() {
+        return (
+            <div className={styles.routes}>
+                <Route
+                    exact
+                    path="/"
+                    component={() => (
+                        <Gallery
+                            pictures={this.state.config.gallery.pictures}
+                            getPrintedButtonName={this.state.config.gallery.getPrintedButtonName}
+                            orderPrintButtonContent={this.state.config.gallery.orderPrintButtonContent}
+                            orderEmailPlaceholder={this.state.config.gallery.orderEmailPlaceholder}
+                            orderMessagePlaceholder={this.state.config.gallery.orderMessagePlaceholder}
+                        />
+                    )}
+                />
+                <Route
+                    path="/about"
+                    component={() => (
+                        <About
+                            description={this.state.config.aboutMe}
+                        />
+                    )}
+                />
+                <Route
+                    path="/contact"
+                    component={() => (
+                        <Contact
+                            caption={this.state.config.contactCaption}
+                            emailPlaceholder={this.state.config.contact.emailPlaceholder}
+                            messagePlaceholder={this.state.config.contact.messagePlaceholder}
+                        />
+                    )}
+                />
+            </div>
+        );
+    }
+
     render() {
         return (
             <Router>
                 <div className={styles.app}>
-                    <div className={styles.headerContainer}>
-                        <Header
-                            menuOpen={this.state.menuOpen}
-                            websiteName={this.state.config.websiteName}
-                            toggleMenu={this.actions.toggleMenuOpen}
-                            onMouseEnter={() => this.actions.toggleMenuOpen(true)}
-                        />
-                    </div>
-                    <div className={styles.content}>
-                        <div
-                            className={styles.menu}
-                            onBlur={() => this.actions.toggleMenuOpen(false)}
-                        >
-                            <Menu
-                                open={this.state.menuOpen}
-                                toggleOpen={this.actions.toggleMenuOpen}
-                                onMouseLeave={() => this.actions.toggleMenuOpen(false)}
-                                instagramUrl={this.state.config.instagramUrl}
-                            />
-                        </div>
-                        <div className={styles.routes}>
-                            <Route
-                                exact
-                                path="/"
-                                component={() => (
-                                    <Gallery
-                                        pictures={this.state.config.gallery.pictures}
-                                        getPrintedButtonName={this.state.config.gallery.getPrintedButtonName}
-                                        orderPrintButtonContent={this.state.config.gallery.orderPrintButtonContent}
-                                        orderEmailPlaceholder={this.state.config.gallery.orderEmailPlaceholder}
-                                        orderMessagePlaceholder={this.state.config.gallery.orderMessagePlaceholder}
-                                    />
-                                )}
-                            />
-                            <Route
-                                path="/about"
-                                component={() => (
-                                    <About
-                                        description={this.state.config.aboutMe}
-                                    />
-                                )}
-                            />
-                            <Route
-                                path="/contact"
-                                component={() => (
-                                    <Contact
-                                        caption={this.state.config.contactCaption}
-                                        placeholder={this.state.config.contactPlaceholder}
-                                    />
-                                )}
-                            />
-                        </div>
-                    </div>
-                    {this.state.config.copyrightNote && (
-                        <div className={styles.copyrightNote}>
-                            <div className={styles.text}>
-                                {this.state.config.copyrightNote}
+                    {this.state.loaded ? (
+                        <React.Fragment>
+                            <div className={styles.headerContainer}>
+                                <Header
+                                    menuOpen={this.state.menuOpen}
+                                    websiteName={this.state.config.websiteName}
+                                    toggleMenu={this.actions.toggleMenuOpen}
+                                    onMouseEnter={() => this.actions.toggleMenuOpen(true)}
+                                />
                             </div>
+                            <div className={styles.content}>
+                                <div
+                                    className={styles.menu}
+                                    onBlur={() => this.actions.toggleMenuOpen(false)}
+                                >
+                                    <Menu
+                                        open={this.state.menuOpen}
+                                        toggleOpen={this.actions.toggleMenuOpen}
+                                        onMouseLeave={() => this.actions.toggleMenuOpen(false)}
+                                        instagramUrl={this.state.config.instagramUrl}
+                                    />
+                                </div>
+                                {this.renderRoutes()}
+                            </div>
+                            {this.state.config.copyrightNote && (
+                                <div className={styles.copyrightNote}>
+                                    <div className={styles.text}>
+                                        {this.state.config.copyrightNote}
+                                    </div>
+                                </div>
+                            )}
+                        </React.Fragment>
+                    ) : (
+                        <div className={styles.loader}>
+                            <LoadingIcon
+                                className={styles.loadingIcon}
+                            />
                         </div>
                     )}
                 </div>

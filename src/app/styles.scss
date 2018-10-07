@@ -58,4 +58,19 @@ html {
             color: rgb(114, 114, 114);
         }
     }
+
+    .loader {
+        height: 100%;
+        width: 100%;
+        background: rgba(3, 3, 3, 0.458);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &>.loadingIcon {
+            height: 80px;
+            width: 80px;
+            stroke-width: 2px;
+        }
+    }
 }
