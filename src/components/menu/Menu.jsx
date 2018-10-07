@@ -9,7 +9,7 @@ function Menu(props) {
 
     return (
         <div
-            className={`${styles.menu} ${props.open ? styles.open : ''}`}
+            className={styles.menu}
             onMouseLeave={props.onMouseLeave}
         >
             <div>
@@ -95,7 +95,6 @@ function Menu(props) {
 }
 
 Menu.propTypes = {
-    open: PropTypes.bool,
     toggleOpen: PropTypes.func.isRequired,
     location: PropTypes.shape({
         pathname: PropTypes.string,
@@ -105,7 +104,6 @@ Menu.propTypes = {
 };
 
 Menu.defaultProps = {
-    open: false,
     onMouseLeave: () => {},
     instagramUrl: '',
 };

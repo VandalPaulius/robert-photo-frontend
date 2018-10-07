@@ -230,8 +230,6 @@ class App extends React.Component {
                                 >
                                     <Expandable expanded={this.state.menuOpen}>
                                         <Menu
-                                            // open={this.state.menuOpen}
-                                            open
                                             toggleOpen={this.actions.toggleMenuOpen}
                                             onMouseLeave={() => this.actions.toggleMenuOpen(false)}
                                             instagramUrl={this.state.config.instagramUrl}
