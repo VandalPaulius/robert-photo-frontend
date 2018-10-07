@@ -1,158 +1,49 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ContactForm } from 'components';
 import styles from './styles.scss';
-import { Captcha, SendButton } from './components';
 
-class Contact extends React.Component {
-    constructor(props) {
-        super(props);
+function Contact(props) {
+    const sendEnquiry = ({
+        data,
+        onSuccess,
+        onError, // eslint-disable-line no-unused-vars
+        resetStateCallback,
+    }) => {
+        // eslint-disable-next-line no-console
+        console.log('sendEnquiry data: ', data);
 
-        this.state = {
-            emailInputRef: null,
-            messageInputRef: null,
-            errors: {},
-            sendStatus: 'idle',
-            captchaSolved: false,
-        };
+        setTimeout(() => { // dev
+            onSuccess();
+            setTimeout(() => resetStateCallback(), 1300);
 
-        this.actions = this.initActions();
-    }
+            // onError('An error has occurred');
+        }, 500);
+    };
 
-    // eslint-disable-next-line react/sort-comp
-    initActions() {
-        return {
-            setRef: (ref, name) => {
-                if (!this.state[name]) {
-                    this.setState({ [name]: ref });
-                }
-            },
-            updateSendStatus: (sendStatus) => {
-                this.setState({ sendStatus });
-            },
-            sendMessage: () => {
-                const isValid = (message) => {
-                    let valid = true;
-                    const errors = {
-                        email: '',
-                        message: '',
-                    };
-
-                    if (!/[^\s@]+@[^\s@]+\.[^\s@]+/.test(message.email.toLowerCase())) {
-                        errors.email = 'Email is not valid';
-                        valid = false;
-                    }
-
-                    if (!message.message) {
-                        errors.message = 'Message is empty';
-                        valid = false;
-                    }
-
-                    if (!this.state.captchaSolved) {
-                        errors.captcha = 'Are you a human?';
-                        valid = false;
-                    }
-
-                    this.setState({ errors });
-                    return valid;
-                };
-
-                if (isValid({
-                    email: this.state.emailInputRef.value,
-                    message: this.state.messageInputRef.value,
-                })) {
-                    // fetch
-
-                    this.actions.updateSendStatus('sending');
-                    setTimeout(() => { // dev
-                        this.actions.updateSendStatus('idle');
-
-                        this.setState(prevState => ({
-                            errors: {
-                                ...prevState.errors,
-                                send: 'Failed to send message',
-                            },
-                        }));
-                    }, 500);
-                }
-            },
-            updateCaptchaStatus: (captchaSolved) => {
-                this.setState({ captchaSolved });
-            },
-        };
-    }
-
-    getSendButtonStatus() {
-        if (this.state.sendStatus === 'sending') {
-            return 'loading';
-        }
-        if (this.state.sendStatus === 'sent') {
-            return 'succes';
-        }
-
-        return '';
-    }
-
-    render() {
-        return (
-            <div className={styles.contact}>
-                <div className={styles.content}>
-                    {this.props.caption && (
-                        <div className={styles.caption}>
-                            {this.props.caption}
-                        </div>
-                    )}
-                    <input
-                        className={styles.input}
-                        placeholder="Email"
-                        ref={ref => this.actions.setRef(ref, 'emailInputRef')}
-                        type="email"
-                    />
-                    <div className={styles.error}>
-                        {this.state.errors.email}
-                    </div>
-                    <textarea
-                        className={styles.input}
-                        ref={ref => this.actions.setRef(ref, 'messageInputRef')}
-                        placeholder={this.props.placeholder}
-                    />
-                    <div className={styles.error}>
-                        {this.state.errors.message}
-                    </div>
-                    <div className={styles.captchaContainer}>
-                        <Captcha
-                            className={styles.captcha}
-                            onSolved={() => this.actions.updateCaptchaStatus(true)}
-                            solved={this.state.captchaSolved}
-                        />
-                    </div>
-                    <div className={styles.error}>
-                        {this.state.errors.captcha}
-                    </div>
-                    <div className={styles.buttonContainer}>
-                        <SendButton
-                            onClick={this.actions.sendMessage}
-                            status={this.getSendButtonStatus()}
-                        >
-                            Send
-                        </SendButton>
-                    </div>
-                    <div className={styles.error}>
-                        {this.state.errors.send}
-                    </div>
-                </div>
-            </div>
-        );
-    }
+    return (
+        <div className={styles.contact}>
+            <ContactForm
+                className={styles.contactForm}
+                caption={props.caption}
+                emailPlaceholder={props.emailPlaceholder}
+                messagePlaceholder={props.messagePlaceholder}
+                onFormFillSuccess={sendEnquiry}
+            />
+        </div>
+    );
 }
 
 Contact.propTypes = {
     caption: PropTypes.string,
-    placeholder: PropTypes.string,
+    messagePlaceholder: PropTypes.string,
+    emailPlaceholder: PropTypes.string,
 };
 
 Contact.defaultProps = {
     caption: '',
-    placeholder: '',
+    messagePlaceholder: '',
+    emailPlaceholder: '',
 };
 
 export default Contact;
