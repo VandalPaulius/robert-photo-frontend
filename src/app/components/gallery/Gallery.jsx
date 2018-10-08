@@ -12,6 +12,7 @@ class Gallery extends React.Component {
             pictures: [],
             loading: false,
             batch: 0,
+            scrollEventListener: null,
         };
 
         this.actions = this.initActions();
@@ -116,23 +117,47 @@ class Gallery extends React.Component {
                 this.setState({ loading: true })
 
                 setTimeout(() => {
-                    const newPictures = [];
-                    pictures.map((picture) => {
-                        newPictures.push(picture);
-                    });
+                    this.setState((prevState) => {
+                        const newPictures = [...prevState.pictures];
+                        pictures.map((picture) => {
+                            newPictures.push(picture);
+                        });
 
-                    this.setState(prevState => ({
-                        pictures: newPictures,
-                        loading: false,
-                        batch: prevState.batch + 1,
-                    }));
-                }, 500);
+                        return ({
+                            pictures: newPictures,
+                            loading: false,
+                            batch: prevState.batch + 1,
+                        });
+                    });
+                }, 1000);
+            },
+            initPictureLoad: () => {
+                this.actions.loadPictures();
+
+                const scrollEventListener = window.addEventListener('scroll', () => {
+                    const page = document.documentElement;
+
+                    if (
+                        page.clientHeight + page.scrollTop
+                        >= page.scrollHeight - (page.scrollHeight * 0.2)
+                    ) {
+                        if (!this.state.loading) {
+                            this.actions.loadPictures();
+                        }
+                    }
+                });
+
+                this.setState({ scrollEventListener });
             },
         };
     }
 
     componentDidMount() {
-        this.actions.loadPictures();
+        this.actions.initPictureLoad();
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.state.scrollEventListener);
     }
 
     render() {
