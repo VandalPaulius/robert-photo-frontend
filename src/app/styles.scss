@@ -25,22 +25,23 @@ html {
     flex-wrap: nowrap;
     justify-content: space-between;
 
-    .headerContainer {
+    .topContent {
+        z-index: 2;
         flex-shrink: 0;
+        position: fixed;
+        width: 100%;
+
+        &>.menu {
+            z-index: 1;
+            width: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.356);
+        }
     }
 
     .content {
         flex-grow: 1;
         flex-shrink: 0;
-        position: relative;
-        
-        &>.menu {
-            position: absolute;
-            top: 0;
-            z-index: 2;
-            width: 100%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.356);
-        }
+       
 
         &>.routes {
             width: 100%;

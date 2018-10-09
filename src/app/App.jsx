@@ -17,6 +17,7 @@ class App extends React.Component {
             config: {},
             loaded: false,
             menuOpen: false,
+            headerOffset: null,
         };
 
         this.actions = this.initActions();
@@ -73,6 +74,13 @@ class App extends React.Component {
                     });
                 }, 100);
             },
+            setHeaderOffset: (headerRef) => {
+                if (!this.state.headerOffset) {
+                    this.setState({
+                        headerOffset: headerRef.offsetHeight,
+                    });
+                }
+            },
         };
     }
 
@@ -123,15 +131,15 @@ class App extends React.Component {
                 <div className={styles.app}>
                     {this.state.loaded ? (
                         <React.Fragment>
-                            <div className={styles.headerContainer}>
-                                <Header
-                                    menuOpen={this.state.menuOpen}
-                                    websiteName={this.state.config.websiteName}
-                                    toggleMenu={this.actions.toggleMenuOpen}
-                                    onMouseEnter={() => this.actions.toggleMenuOpen(true)}
-                                />
-                            </div>
-                            <div className={styles.content}>
+                            <div className={styles.topContent}>
+                                <div ref={this.actions.setHeaderOffset}>
+                                    <Header
+                                        menuOpen={this.state.menuOpen}
+                                        websiteName={this.state.config.websiteName}
+                                        toggleMenu={this.actions.toggleMenuOpen}
+                                        onMouseEnter={() => this.actions.toggleMenuOpen(true)}
+                                    />
+                                </div>
                                 <div
                                     className={styles.menu}
                                     onBlur={() => this.actions.toggleMenuOpen(false)}
@@ -144,7 +152,12 @@ class App extends React.Component {
                                         />
                                     </Expandable>
                                 </div>
-                                {this.renderRoutes()}
+                            </div>
+                            <div
+                                className={styles.content}
+                                style={{ marginTop: `${this.state.headerOffset}px` }}
+                            >
+                                {this.state.headerOffset && this.renderRoutes()}
                             </div>
                             {this.state.config.copyrightNote && (
                                 <div className={styles.copyrightNote}>
