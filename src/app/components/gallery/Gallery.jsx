@@ -131,33 +131,37 @@ class Gallery extends React.Component {
                     });
                 }, 1000);
             },
-            initPictureLoad: () => {
-                this.actions.loadPictures();
-
-                const scrollEventListener = window.addEventListener('scroll', () => {
-                    const page = document.documentElement;
-
-                    if (
-                        page.clientHeight + page.scrollTop
-                        >= page.scrollHeight - (page.scrollHeight * 0.2)
-                    ) {
-                        if (!this.state.loading) {
-                            this.actions.loadPictures();
-                        }
-                    }
-                });
-
+            setScrollEventListener: (scrollEventListener) => {
                 this.setState({ scrollEventListener });
             },
         };
     }
 
     componentDidMount() {
-        this.actions.initPictureLoad();
+        this.initPictureLoad();
     }
 
     componentWillUnmount() {
         window.removeEventListener('scroll', this.state.scrollEventListener);
+    }
+
+    initPictureLoad() {
+        this.actions.loadPictures();
+
+        const scrollEventListener = window.addEventListener('scroll', () => {
+            const page = document.documentElement;
+
+            if (
+                page.clientHeight + page.scrollTop
+                >= page.scrollHeight - (page.scrollHeight * 0.2)
+            ) {
+                if (!this.state.loading) {
+                    this.actions.loadPictures();
+                }
+            }
+        });
+
+        this.actions.setScrollEventListener(scrollEventListener);
     }
 
     render() {
