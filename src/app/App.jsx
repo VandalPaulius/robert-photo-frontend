@@ -86,7 +86,7 @@ class App extends React.Component {
                 <Route
                     exact
                     path="/"
-                    component={() => (
+                    render={() => (
                         <Gallery
                             getPrintedButtonName={this.state.config.gallery.getPrintedButtonName}
                             orderPrintButtonContent={this.state.config.gallery.orderPrintButtonContent}
@@ -97,7 +97,7 @@ class App extends React.Component {
                 />
                 <Route
                     path="/about"
-                    component={() => (
+                    render={() => (
                         <About
                             description={this.state.config.aboutMe}
                         />
@@ -105,7 +105,7 @@ class App extends React.Component {
                 />
                 <Route
                     path="/contact"
-                    component={() => (
+                    render={() => (
                         <Contact
                             caption={this.state.config.contact.contactCaption}
                             emailPlaceholder={this.state.config.contact.emailPlaceholder}
