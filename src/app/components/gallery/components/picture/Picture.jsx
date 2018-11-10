@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ChevronIcon, Expandable } from 'components';
+import { ChevronIcon, Expandable } from 'components'; // eslint-disable-line import/no-unresolved
 import styles from './styles.scss';
 import { OrderForm } from './components';
 

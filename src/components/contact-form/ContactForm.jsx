@@ -18,7 +18,7 @@ class ContactForm extends React.Component {
         this.state = { ...initialState };
 
         this.actions = this.initActions();
-        
+
         this.actions.updateSendStatus = this.actions.updateSendStatus.bind(this);
         this.actions.updateSendError = this.actions.updateSendError.bind(this);
         this.actions.resetState = this.actions.resetState.bind(this);

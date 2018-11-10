@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ContactForm } from 'components';
+import { ContactForm } from 'components'; // eslint-disable-line import/no-unresolved
 import styles from './styles.scss';
 
 function Contact(props) {

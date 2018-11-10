@@ -5,7 +5,7 @@ import {
     Header,
     LoadingIcon,
     Expandable,
-} from 'components';
+} from 'components'; // eslint-disable-line import/no-unresolved
 import styles from './styles.scss';
 import { Gallery, About, Contact } from './components';
 
@@ -46,7 +46,7 @@ class App extends React.Component {
                             }, {
                                 id: '6ds5fsdf56ad',
                                 text: true,
-                                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
+                                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
                             }, {
                                 id: '56dsf4sd6f465484dsf565',
                                 image: true,
@@ -55,7 +55,7 @@ class App extends React.Component {
                             }, {
                                 id: 'sdfsd989223a',
                                 text: true,
-                                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'
+                                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
                             }],
                             copyrightNote: 'Robert Arthur Photography ©',
                             instagramUrl: 'https://www.instagram.com/ridebmx/?hl=en',
@@ -97,8 +97,10 @@ class App extends React.Component {
                     render={() => (
                         <Gallery
                             getPrintedButtonName={this.state.config.gallery.getPrintedButtonName}
+                            // eslint-disable-next-line max-len
                             orderPrintButtonContent={this.state.config.gallery.orderPrintButtonContent}
                             orderEmailPlaceholder={this.state.config.gallery.orderEmailPlaceholder}
+                            // eslint-disable-next-line max-len
                             orderMessagePlaceholder={this.state.config.gallery.orderMessagePlaceholder}
                         />
                     )}

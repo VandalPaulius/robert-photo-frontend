@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LoadingIcon } from 'components';
+import { LoadingIcon } from 'components'; // eslint-disable-line import/no-unresolved
 import { Picture } from './components';
 import styles from './styles.scss';
 
@@ -114,7 +114,7 @@ class Gallery extends React.Component {
                     }],
                 }];
 
-                this.setState({ loading: true })
+                this.setState({ loading: true });
 
                 setTimeout(() => {
                     this.setState((prevState) => {

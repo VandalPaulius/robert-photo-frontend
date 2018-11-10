@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ChevronIcon } from 'components';
+import { ChevronIcon } from 'components'; // eslint-disable-line import/no-unresolved
 import styles from './styles.scss';
 
 function Header(props) {

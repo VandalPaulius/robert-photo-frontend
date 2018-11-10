@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { LoadingIcon, CheckIcon } from 'components';
+import { LoadingIcon, CheckIcon } from 'components'; // eslint-disable-line import/no-unresolved
 import styles from './styles.scss';
 
 class SendButton extends React.Component {
